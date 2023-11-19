@@ -1,3 +1,2 @@
-export function add(a: number, b: number) {
-  return a + b + 2
-}
+export * from '@/react'
+export * from '@/shared'
