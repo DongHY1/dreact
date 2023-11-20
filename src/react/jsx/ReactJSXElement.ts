@@ -1,46 +1,29 @@
-import type { ElementType, IReactElement, Key, Props, Ref } from '@/shared/ReactTypes'
+import type { ElementType, Key, Props, Ref, VNode } from '@/shared/ReactTypes'
 
-function ReactElement(type: ElementType, key: Key, ref: Ref, props: Props): IReactElement {
-  const element: IReactElement = {
-    // This tag allows us to uniquely identify this as a React Element
-    $$typeof: Symbol.for('react.element'),
-    // Built-in properties that belong on the element
+function ReactElement(type: ElementType, props: Props, key: Key, ref: Ref): VNode {
+  const element: VNode = {
     type,
+    props,
     key,
     ref,
-    props,
     __mark: 'daviddong'
   }
   return element
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function jsx(type: ElementType, config: any, maybeKey?: string): IReactElement {
-  const props = {}
+export function jsx(type: ElementType, props: Props, maybeKey?: string): VNode {
+  const normalizedProps = {}
   let key = null
   let ref = null
-  key = maybeKey
-  if (config?.ref) {
-    ref = config.ref
+  if (maybeKey) {
+    key = maybeKey
   }
-  for (const propName in config) {
-    const val = config[propName]
-    if (propName === 'key') {
-      if (val) {
-        key = '' + val
-      }
-      continue
-    }
-    if (propName === 'ref') {
-      if (val) {
-        ref = val
-      }
-      continue
-    }
-    // 需要判断是否是自己的property
-    props[propName] = val
+  for (const prop in props) {
+    if (prop == 'key') key = props[prop]
+    else if (prop == 'ref') ref = props[prop]
+    else normalizedProps[prop] = props[prop]
   }
-  return ReactElement(type, key, ref, props)
+  return ReactElement(type, props, key, ref)
 }
 
 export const jsxDEV = jsx
