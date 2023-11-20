@@ -7,7 +7,7 @@ describe('ReactJSXElement', () => {
     const vnode = jsxDEV('div', { ref })
     expect(vnode.ref).toEqual(ref)
   })
-  it('should add keys', () => {
+  it('should keep keys in props', () => {
     const vnode = jsxDEV('div', null, 'foo')
     expect(vnode.key).to.equal('foo')
   })

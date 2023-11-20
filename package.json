@@ -4,26 +4,18 @@
   "version": "1.0.0",
   "author": "David Dong <hi@daviddong.me>",
   "type": "module",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    "import": "./dist/index.js"
-  },
   "scripts": {
     "test": "vitest",
-    "build": "rimraf dist && tsup"
+    "build": "rimraf dist && unbuild"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^6.0.0",
-    "@typescript-eslint/parser": "^6.0.0",
     "eslint": "^8.45.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "prettier": "^3.0.3",
     "rimraf": "^5.0.5",
-    "tsup": "^7.3.0",
-    "typescript": "^5.0.2",
+    "unbuild": "^2.0.0",
     "vitest": "^0.34.6"
   }
 }

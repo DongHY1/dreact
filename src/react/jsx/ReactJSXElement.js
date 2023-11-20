@@ -1,7 +1,5 @@
-import type { ElementType, Key, Props, Ref, VNode } from '@/shared/ReactTypes'
-
-function ReactElement(type: ElementType, props: Props, key: Key, ref: Ref): VNode {
-  const element: VNode = {
+function ReactElement(type, props, key, ref) {
+  const element = {
     type,
     props,
     key,
@@ -11,7 +9,7 @@ function ReactElement(type: ElementType, props: Props, key: Key, ref: Ref): VNod
   return element
 }
 
-export function jsx(type: ElementType, props: Props, maybeKey?: string): VNode {
+export function jsx(type, props, maybeKey) {
   const normalizedProps = {}
   let key = null
   let ref = null
